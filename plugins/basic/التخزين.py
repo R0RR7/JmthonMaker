@@ -28,24 +28,24 @@ CACHE_SPAM = {}
 TAG_EDITS = {}
 Logm = KeySettings("LOGUSERS", cast=list)
 
-@jmubot.on(
-    events.NewMessage(
-        func=lambda e: e.is_private 
-        and (e.photo or e.video or e.voice)
-        and getattr(e.media, 'ttl_seconds', None) is not None
-        and jmdB.get_key("TAG_CHAT")
-    )
-)
-async def secpic(event):
-    sender = await event.get_sender()
-    username = sender.username
-    user_id = sender.id
-    TAG_CHAT = jmdB.get_config("TAG_CHAT")
-    result = await event.download_media()
-    caption = (
-        f"**⌔∮ ميديا ذاتية التدمير وصلت لك !**\n: المرسل @{username}\nالايدي : {user_id}"
-    )
-    await jmubot.send_file(TAG_CHAT, result, caption=caption)
+# @jmubot.on(
+#     events.NewMessage(
+#         func=lambda e: e.is_private 
+#         and (e.photo or e.video or e.voice)
+#         and getattr(e.media, 'ttl_seconds', None) is not None
+#         and jmdB.get_key("TAG_CHAT")
+#     )
+# )
+# async def secpic(event):
+#     sender = await event.get_sender()
+#     username = sender.username
+#     user_id = sender.id
+#     TAG_CHAT = jmdB.get_config("TAG_CHAT")
+#     result = await event.download_media()
+#     caption = (
+#         f"**⌔∮ ميديا ذاتية التدمير وصلت لك !**\n: المرسل @{username}\nالايدي : {user_id}"
+#     )
+#     await jmubot.send_file(TAG_CHAT, result, caption=caption)
 
 @jmthon_cmd(pattern="ايقاف الحفظ$")
 async def _(e):
